@@ -1,0 +1,32 @@
+TEMPLATE: Job Application Follow-up
+
+SUBJECT: Following up on my application for {{role}} at {{company}}
+
+BODY:
+Dear {{name}},
+
+I recently applied for the {{role}} position at {{company}}, and I wanted to follow up to express my continued interest in this opportunity.
+
+With my background in [your expertise], I believe I would be a strong fit for your team, especially given {{company}}'s focus on [company's mission/values].
+
+I would welcome the opportunity to discuss how my skills and experience align with your needs. Would you be available for a brief call this week?
+
+Thank you for your consideration.
+
+Best regards,
+[Your Name]
+[Your Phone]
+[Your LinkedIn]
+
+---
+PLACEHOLDERS USED:
+- {{name}} - Hiring manager's name
+- {{company}} - Company name
+- {{role}} - Position title
+
+TIPS:
+✓ Be professional and concise
+✓ Show genuine interest in the company
+✓ Mention specific skills relevant to the role
+✓ Include your contact information
+✓ Don't be pushy - one follow-up is enough

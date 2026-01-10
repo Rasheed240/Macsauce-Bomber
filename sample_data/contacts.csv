@@ -1,0 +1,11 @@
+name,email,company,role,location
+John Doe,john.doe@example.com,Acme Inc,CEO,San Francisco
+Jane Smith,jane.smith@example.com,Tech Corp,CTO,New York
+Bob Johnson,bob.johnson@example.com,StartupXYZ,Founder,Austin
+Alice Williams,alice.williams@example.com,InnovateCo,Product Manager,Seattle
+Charlie Brown,charlie.brown@example.com,DevStudio,Lead Developer,Boston
+Diana Prince,diana.prince@example.com,DesignHub,Creative Director,Los Angeles
+Ethan Hunt,ethan.hunt@example.com,SecureTech,Security Engineer,Chicago
+Fiona Green,fiona.green@example.com,DataAnalytics,Data Scientist,Denver
+George Martin,george.martin@example.com,ContentKing,Content Strategist,Portland
+Hannah Lee,hannah.lee@example.com,MarketPro,Marketing Director,Miami

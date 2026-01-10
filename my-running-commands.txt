@@ -1,0 +1,10 @@
+sudo service redis-server start
+redis-cli ping
+
+cd backend
+venv\Scripts\activate
+celery -A app.tasks.celery_app worker --loglevel=info --pool=solo
+
+venv\Scripts\uvicorn.exe app.main:socket_app --reload --host 0.0.0.0 --port 8000
+
+npm run dev

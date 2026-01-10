@@ -1,0 +1,40 @@
+TEMPLATE: Event Invitation
+
+SUBJECT: You're invited: {{event_name}} in {{location}}
+
+BODY:
+Hi {{name}},
+
+We're excited to invite you to {{event_name}}, taking place on {{event_date}} in {{location}}.
+
+As a {{role}} at {{company}}, we think you'll find great value in:
+• Networking with industry leaders
+• Learning about the latest trends
+• Discovering innovative solutions
+
+The event is complimentary for professionals like yourself, and we'd love to have you join us.
+
+Space is limited - RSVP by {{rsvp_deadline}}: [RSVP Link]
+
+Hope to see you there!
+
+Best,
+[Event Organizer]
+[Event Company]
+
+---
+PLACEHOLDERS USED:
+- {{name}} - Attendee's name
+- {{event_name}} - Name of the event
+- {{event_date}} - Date of event
+- {{location}} - Event location
+- {{role}} - Job title
+- {{company}} - Company name
+- {{rsvp_deadline}} - RSVP deadline
+
+TIPS:
+✓ Clearly state event details (date, time, location)
+✓ Highlight benefits of attending
+✓ Include clear RSVP call-to-action
+✓ Mention if the event is free/paid
+✓ Send invitation 2-4 weeks in advance

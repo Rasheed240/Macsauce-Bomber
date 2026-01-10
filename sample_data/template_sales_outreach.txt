@@ -1,0 +1,33 @@
+TEMPLATE: Sales Outreach
+
+SUBJECT: Quick question about {{company}}'s growth strategy
+
+BODY:
+Hi {{name}},
+
+I hope this email finds you well! I came across {{company}} and was impressed by your work in the industry.
+
+As the {{role}}, I thought you might be interested in learning how other companies in {{location}} have been solving [specific problem].
+
+Would you be open to a quick 15-minute call next week to discuss how we might be able to help {{company}} achieve similar results?
+
+Looking forward to hearing from you!
+
+Best regards,
+[Your Name]
+[Your Title]
+[Your Company]
+
+---
+PLACEHOLDERS USED:
+- {{name}} - Recipient's name
+- {{company}} - Company name
+- {{role}} - Job title
+- {{location}} - Location/city
+
+TIPS:
+✓ Keep subject line under 60 characters
+✓ Personalize with at least 2-3 merge tags
+✓ Include clear call-to-action
+✓ Respect the recipient's time
+✓ Always include unsubscribe option
