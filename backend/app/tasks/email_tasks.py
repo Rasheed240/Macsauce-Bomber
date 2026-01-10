@@ -15,7 +15,7 @@ from app.models.contact import Contact
 from app.models.email_log import EmailLog, EmailStatus
 from app.models.user import User
 from app.services.gmail_service import GmailService
-from app.services.auth_service import get_user_credentials
+from app.services.auth_service import AuthService
 from app.services.template_service import render_email
 
 
@@ -65,7 +65,8 @@ def send_campaign_emails(self, campaign_id: int) -> Dict[str, Any]:
         db.commit()
 
         # Get Gmail credentials
-        credentials = get_user_credentials(user)
+        auth_service = AuthService()
+        credentials = auth_service.get_user_credentials(user)
         gmail_service = GmailService(credentials)
 
         # Test Gmail connection
@@ -307,3 +308,7 @@ def resume_campaign(campaign_id: int) -> Dict[str, Any]:
         }
     finally:
         db.close()
+
+
+# Alias for backward compatibility
+start_campaign_sending = send_campaign_emails
