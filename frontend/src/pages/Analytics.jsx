@@ -110,15 +110,15 @@ const Analytics = () => {
   return (
     <div className="space-y-6 pb-8">
       {/* Header Section with Gradient */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-8 shadow-2xl">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-5 sm:p-8 shadow-2xl">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <Activity className="w-8 h-8 text-white" />
-              <h1 className="text-4xl font-bold text-white">Analytics Dashboard</h1>
+              <Activity className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">Analytics Dashboard</h1>
             </div>
-            <p className="text-indigo-100 text-lg">Real-time campaign performance insights</p>
+            <p className="text-indigo-100 text-sm sm:text-lg">Real-time campaign performance insights</p>
           </div>
           <button
             onClick={exportCSV}
@@ -152,7 +152,7 @@ const Analytics = () => {
                   <TrendingUp className="w-5 h-5 text-green-400" />
                 </div>
                 <p className="text-gray-400 text-sm font-medium mb-1">Total Sent</p>
-                <p className="text-3xl font-bold text-white mb-1">{stats?.total_sent?.toLocaleString() || 0}</p>
+                <p className="text-2xl sm:text-3xl font-bold text-white mb-1">{stats?.total_sent?.toLocaleString() || 0}</p>
                 <p className="text-xs text-gray-500">This week: {stats?.sent_this_week?.toLocaleString() || 0}</p>
               </div>
             </div>
@@ -168,7 +168,7 @@ const Analytics = () => {
                   <TrendingUp className="w-5 h-5 text-green-400" />
                 </div>
                 <p className="text-gray-400 text-sm font-medium mb-1">Success Rate</p>
-                <p className="text-3xl font-bold text-white mb-1">{stats?.success_rate ?? 0}%</p>
+                <p className="text-2xl sm:text-3xl font-bold text-white mb-1">{stats?.success_rate ?? 0}%</p>
                 <p className="text-xs text-gray-500">Delivery performance</p>
               </div>
             </div>
@@ -184,7 +184,7 @@ const Analytics = () => {
                   <TrendingDown className="w-5 h-5 text-red-400" />
                 </div>
                 <p className="text-gray-400 text-sm font-medium mb-1">Failed</p>
-                <p className="text-3xl font-bold text-white mb-1">{stats?.total_failed?.toLocaleString() || 0}</p>
+                <p className="text-2xl sm:text-3xl font-bold text-white mb-1">{stats?.total_failed?.toLocaleString() || 0}</p>
                 <p className="text-xs text-gray-500">Requires attention</p>
               </div>
             </div>
@@ -200,7 +200,7 @@ const Analytics = () => {
                   <TrendingDown className="w-5 h-5 text-amber-400" />
                 </div>
                 <p className="text-gray-400 text-sm font-medium mb-1">Bounced</p>
-                <p className="text-3xl font-bold text-white mb-1">{stats?.total_bounced?.toLocaleString() || 0}</p>
+                <p className="text-2xl sm:text-3xl font-bold text-white mb-1">{stats?.total_bounced?.toLocaleString() || 0}</p>
                 <p className="text-xs text-gray-500">Invalid addresses</p>
               </div>
             </div>
@@ -220,7 +220,7 @@ const Analytics = () => {
                 </div>
               </div>
               <ResponsiveContainer width="100%" height={320}>
-                <AreaChart data={timeSeries} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <AreaChart data={timeSeries} margin={{ top: 10, right: 5, left: -10, bottom: 0 }}>
                   <defs>
                     <linearGradient id="colorSent" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3}/>
@@ -259,7 +259,7 @@ const Analytics = () => {
                 </div>
               </div>
               <ResponsiveContainer width="100%" height={320}>
-                <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <BarChart data={chartData} margin={{ top: 10, right: 5, left: -10, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#374151" strokeOpacity={0.3} />
                   <XAxis dataKey="name" tick={{ fill: '#9ca3af', fontSize: 11 }} interval={0} angle={-20} textAnchor="end" height={80} stroke="#4b5563" />
                   <YAxis allowDecimals={false} tick={{ fill: '#9ca3af', fontSize: 12 }} stroke="#4b5563" />
@@ -286,7 +286,7 @@ const Analytics = () => {
                   <p className="text-sm text-gray-400">Distribution of email statuses</p>
                 </div>
               </div>
-              <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
                 <ResponsiveContainer width="100%" height={280}>
                   <PieChart>
                     <defs>
@@ -326,7 +326,7 @@ const Analytics = () => {
                     <Tooltip content={<CustomTooltip />} />
                   </PieChart>
                 </ResponsiveContainer>
-                <div className="flex flex-col gap-4 min-w-[200px]">
+                <div className="flex flex-col gap-3 sm:gap-4 w-full md:min-w-[200px] md:w-auto">
                   {pieData.map((item, idx) => (
                     <div key={idx} className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg border border-gray-700">
                       <div className="flex items-center gap-3">
@@ -354,17 +354,17 @@ const Analytics = () => {
               <div className="space-y-6">
                 <div className="text-center p-6 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-xl border border-indigo-500/20">
                   <p className="text-gray-400 text-sm mb-2">Today</p>
-                  <p className="text-4xl font-bold text-white mb-1">{stats?.sent_today?.toLocaleString() || 0}</p>
+                  <p className="text-3xl sm:text-4xl font-bold text-white mb-1">{stats?.sent_today?.toLocaleString() || 0}</p>
                   <p className="text-xs text-gray-500">emails sent</p>
                 </div>
                 <div className="text-center p-6 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-xl border border-cyan-500/20">
                   <p className="text-gray-400 text-sm mb-2">This Week</p>
-                  <p className="text-4xl font-bold text-white mb-1">{stats?.sent_this_week?.toLocaleString() || 0}</p>
+                  <p className="text-3xl sm:text-4xl font-bold text-white mb-1">{stats?.sent_this_week?.toLocaleString() || 0}</p>
                   <p className="text-xs text-gray-500">emails sent</p>
                 </div>
                 <div className="text-center p-6 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-xl border border-green-500/20">
                   <p className="text-gray-400 text-sm mb-2">Total Campaigns</p>
-                  <p className="text-4xl font-bold text-white mb-1">{campaigns.length}</p>
+                  <p className="text-3xl sm:text-4xl font-bold text-white mb-1">{campaigns.length}</p>
                   <p className="text-xs text-gray-500">active campaigns</p>
                 </div>
               </div>

@@ -51,7 +51,7 @@ const Dashboard = () => {
 
           {/* Welcome Text */}
           <div className="space-y-4">
-            <h2 className="text-5xl font-black">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black">
               <span className="gradient-text">Welcome to</span>
               <br />
               <span className="gradient-text">Macsauce Bomber</span>
@@ -157,7 +157,7 @@ const Dashboard = () => {
       {/* Header Section */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 animate-slide-down">
         <div>
-          <h1 className="text-4xl font-black gradient-text mb-2">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black gradient-text mb-2">
             Dashboard
           </h1>
           <p className="text-base" style={{ color: 'rgb(var(--color-text-secondary))' }}>
@@ -185,7 +185,7 @@ const Dashboard = () => {
                     <p className="text-sm font-semibold mb-2" style={{ color: 'rgb(var(--color-text-tertiary))' }}>
                       {stat.label}
                     </p>
-                    <p className="text-4xl font-black" style={{ color: 'rgb(var(--color-text-primary))' }}>
+                    <p className="text-2xl sm:text-3xl lg:text-4xl font-black" style={{ color: 'rgb(var(--color-text-primary))' }}>
                       {stat.value}
                     </p>
                   </div>
