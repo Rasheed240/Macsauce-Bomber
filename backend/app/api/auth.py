@@ -3,6 +3,7 @@ from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 
+from app.core.config import settings
 from app.core.database import get_db
 from app.services.auth_service import AuthService
 from app.models.user import User
@@ -59,14 +60,14 @@ async def google_oauth_callback(
 
         # Redirect to frontend with success
         return RedirectResponse(
-            url=f"http://localhost:3000/settings?auth=success&email={email}",
+            url=f"{settings.FRONTEND_BASE_URL}/settings?auth=success&email={email}",
             status_code=status.HTTP_302_FOUND
         )
 
     except Exception as e:
         # Redirect to frontend with error
         return RedirectResponse(
-            url=f"http://localhost:3000/settings?auth=error&message={str(e)}",
+            url=f"{settings.FRONTEND_BASE_URL}/settings?auth=error&message={str(e)}",
             status_code=status.HTTP_302_FOUND
         )
 
