@@ -372,8 +372,8 @@ async def start_campaign_now(
                 mapped_data[placeholder] = contact.data.get(column, "")
 
             # Add unsubscribe link
-            frontend_url = "http://localhost:3000"
-            mapped_data["unsubscribe_link"] = f"{frontend_url}/unsubscribe/{contact.id}"
+            from app.core.config import settings
+            mapped_data["unsubscribe_link"] = f"{settings.FRONTEND_BASE_URL}/unsubscribe/{contact.id}"
 
             # Render email
             try:

@@ -8,19 +8,21 @@ class Settings(BaseSettings):
     APP_NAME: str = "Macsauce Bomber"
     VERSION: str = "1.0.0"
     DEBUG: bool = True
+    BACKEND_BASE_URL: str
+    FRONTEND_BASE_URL: str
 
     # Database
-    DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/macsauce_bomber"
-    DATABASE_URL_ASYNC: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/macsauce_bomber"
+    DATABASE_URL: str
+    DATABASE_URL_ASYNC: str
 
     # Redis
-    REDIS_URL: str = "redis://localhost:6379/0"
-    CELERY_BROKER_URL: str = "redis://localhost:6379/1"
-    CELERY_RESULT_BACKEND: str = "redis://localhost:6379/2"
+    REDIS_URL: str
+    CELERY_BROKER_URL: str
+    CELERY_RESULT_BACKEND: str
 
     # Security
-    SECRET_KEY: str = "your-secret-key-change-this-in-production"
-    ENCRYPTION_KEY: str = "your-encryption-key-change-this"
+    SECRET_KEY: str
+    ENCRYPTION_KEY: str
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
 
@@ -28,8 +30,8 @@ class Settings(BaseSettings):
     CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
 
     # Google OAuth
-    GOOGLE_CLIENT_ID: str = ""
-    GOOGLE_CLIENT_SECRET: str = ""
+    GOOGLE_CLIENT_ID: str
+    GOOGLE_CLIENT_SECRET: str
     GOOGLE_REDIRECT_URI: str = "http://localhost:8000/api/auth/callback"
 
     # Gmail API

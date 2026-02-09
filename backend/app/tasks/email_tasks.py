@@ -99,7 +99,8 @@ def send_campaign_emails(self, campaign_id: int) -> Dict[str, Any]:
                     mapped_data[placeholder] = contact.data.get(column, '')
 
                 # Add unsubscribe link
-                mapped_data['unsubscribe_link'] = f"http://localhost:3000/unsubscribe/{contact.id}"
+                from app.core.config import settings
+                mapped_data['unsubscribe_link'] = f"{settings.FRONTEND_BASE_URL}/unsubscribe/{contact.id}"
 
                 # Render email
                 rendered = render_email(
