@@ -280,8 +280,8 @@ const NewCampaign = () => {
       {/* Header */}
       <div className="flex items-center justify-between animate-slide-down">
         <div>
-          <h1 className="text-4xl font-black gradient-text mb-2 flex items-center gap-3">
-            <Sparkles className="w-8 h-8 text-primary-500" />
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black gradient-text mb-2 flex items-center gap-2 sm:gap-3">
+            <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-primary-500" />
             New Campaign
           </h1>
           <p className="text-base" style={{ color: 'rgb(var(--color-text-secondary))' }}>
@@ -302,7 +302,7 @@ const NewCampaign = () => {
               <div key={s.number} className="flex items-center flex-1">
                 <div className="flex items-center gap-3">
                   <div className={clsx(
-                    'relative w-12 h-12 rounded-2xl flex items-center justify-center font-bold transition-all duration-300',
+                    'relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center font-bold transition-all duration-300',
                     isActive && 'bg-gradient-to-br from-primary-600 to-accent-600 shadow-lg shadow-primary-500/30 scale-110',
                     isCompleted && 'bg-green-600 shadow-lg shadow-green-500/30',
                     !isActive && !isCompleted && 'border-2',
@@ -338,7 +338,7 @@ const NewCampaign = () => {
                   </div>
                 </div>
                 {idx < steps.length - 1 && (
-                  <div className="h-1 flex-1 mx-4 rounded-full transition-all duration-500"
+                  <div className="h-1 flex-1 mx-1 sm:mx-4 rounded-full transition-all duration-500"
                        style={{
                          backgroundColor: isCompleted ? '#10b981' : 'rgb(var(--color-border))'
                        }} />
@@ -588,7 +588,7 @@ const NewCampaign = () => {
               </div>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <button
                 onClick={() => setStep(1)}
                 className="btn-ghost"
@@ -658,7 +658,7 @@ const NewCampaign = () => {
               ))}
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <button onClick={() => setStep(2)} className="btn-ghost">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back
@@ -673,7 +673,7 @@ const NewCampaign = () => {
 
         {step === 3 && useManualEntry && (
           <div className="space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
                 <h2 className="text-2xl font-bold mb-2" style={{ color: 'rgb(var(--color-text-primary))' }}>
                   Enter Recipient Data
@@ -716,7 +716,7 @@ const NewCampaign = () => {
               </div>
             )}
 
-            <div className="space-y-4 max-h-[500px] overflow-y-auto scrollbar-thin">
+            <div className="space-y-4 max-h-[400px] sm:max-h-[500px] overflow-y-auto scrollbar-thin">
               {manualContacts.map((contact, index) => (
                 <div key={index} className="card-flat relative hover-lift animate-slide-up" style={{ animationDelay: `${index * 0.05}s` }}>
                   <div className="flex items-center justify-between mb-4">
@@ -764,7 +764,7 @@ const NewCampaign = () => {
               ))}
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <button onClick={() => setStep(2)} className="btn-ghost">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back
@@ -793,13 +793,13 @@ const NewCampaign = () => {
             </div>
 
             {/* Campaign Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
               <div className="stat-card">
                 <div className="relative z-10">
                   <p className="text-sm font-semibold mb-1" style={{ color: 'rgb(var(--color-text-tertiary))' }}>
                     Total Recipients
                   </p>
-                  <p className="text-4xl font-black" style={{ color: 'rgb(var(--color-text-primary))' }}>
+                  <p className="text-2xl sm:text-4xl font-black" style={{ color: 'rgb(var(--color-text-primary))' }}>
                     {useManualEntry ? manualContacts.length : (campaignData.parsedData?.length || 0)}
                   </p>
                 </div>
@@ -821,7 +821,7 @@ const NewCampaign = () => {
                   <p className="text-sm font-semibold mb-1" style={{ color: 'rgb(var(--color-text-tertiary))' }}>
                     Placeholders
                   </p>
-                  <p className="text-4xl font-black" style={{ color: 'rgb(var(--color-text-primary))' }}>
+                  <p className="text-2xl sm:text-4xl font-black" style={{ color: 'rgb(var(--color-text-primary))' }}>
                     {placeholders.length}
                   </p>
                 </div>
@@ -832,7 +832,7 @@ const NewCampaign = () => {
                   <p className="text-sm font-semibold mb-1" style={{ color: 'rgb(var(--color-text-tertiary))' }}>
                     Attachments
                   </p>
-                  <p className="text-4xl font-black" style={{ color: 'rgb(var(--color-text-primary))' }}>
+                  <p className="text-2xl sm:text-4xl font-black" style={{ color: 'rgb(var(--color-text-primary))' }}>
                     {attachments.length}
                   </p>
                 </div>
@@ -878,7 +878,7 @@ const NewCampaign = () => {
               <h3 className="text-lg font-bold mb-4" style={{ color: 'rgb(var(--color-text-primary))' }}>
                 Sending Configuration
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm font-semibold mb-2" style={{ color: 'rgb(var(--color-text-primary))' }}>
                     Daily Limit
@@ -966,7 +966,7 @@ const NewCampaign = () => {
               </div>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <button onClick={() => setStep(3)} className="btn-ghost">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back

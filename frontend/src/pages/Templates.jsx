@@ -41,7 +41,7 @@ const Templates = () => {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold">Templates</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold">Templates</h1>
         <p className="text-gray-400 mt-1">Saved email templates</p>
       </div>
 
@@ -61,11 +61,11 @@ const Templates = () => {
           <p className="text-sm text-gray-500 mt-2">Create templates from the campaign wizard</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {templates.map(template => (
-            <div key={template.id} className="card p-6 space-y-2 relative">
+            <div key={template.id} className="card p-4 sm:p-6 space-y-2 relative">
               <button
-                className="absolute top-3 right-3 text-gray-500 hover:text-red-500"
+                className="absolute top-2 right-2 sm:top-3 sm:right-3 text-gray-500 hover:text-red-500 p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
                 title="Delete"
                 onClick={() => handleDelete(template.id)}
               >

@@ -16,12 +16,12 @@ const Toast = ({ message, type = 'info', onClose }) => {
   }
 
   return (
-    <div className={`flex items-center gap-3 p-4 rounded-lg border ${colors[type]} backdrop-blur-sm animate-slide-in min-w-[300px] max-w-md shadow-lg`}>
+    <div className={`flex items-center gap-3 p-3 sm:p-4 rounded-lg border ${colors[type]} backdrop-blur-sm animate-slide-in min-w-0 sm:min-w-[300px] max-w-[calc(100vw-2rem)] sm:max-w-md shadow-lg`}>
       {icons[type]}
       <p className="flex-1 text-sm text-gray-100">{message}</p>
       <button
         onClick={onClose}
-        className="text-gray-400 hover:text-gray-200 transition-colors"
+        className="text-gray-400 hover:text-gray-200 transition-colors p-2 -mr-1 rounded-lg min-w-[44px] min-h-[44px] flex items-center justify-center"
       >
         <X className="w-4 h-4" />
       </button>

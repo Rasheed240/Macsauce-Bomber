@@ -92,13 +92,13 @@ const CampaignDetail = () => {
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">{campaign.name}</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">{campaign.name}</h1>
           <p className="text-gray-400 mt-1">{campaign.template_subject}</p>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {campaign.status === 'draft' && (
             <>
               <button
@@ -186,28 +186,28 @@ const CampaignDetail = () => {
           />
         </div>
 
-        <div className="grid grid-cols-4 gap-4">
-          <div className="text-center p-4 bg-gray-800 rounded-lg">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+          <div className="text-center p-3 sm:p-4 bg-gray-800 rounded-lg">
             <Clock className="w-6 h-6 text-gray-400 mx-auto mb-2" />
-            <p className="text-2xl font-bold">{campaign.total_contacts}</p>
+            <p className="text-xl sm:text-2xl font-bold">{campaign.total_contacts}</p>
             <p className="text-sm text-gray-400">Total</p>
           </div>
 
-          <div className="text-center p-4 bg-gray-800 rounded-lg">
+          <div className="text-center p-3 sm:p-4 bg-gray-800 rounded-lg">
             <CheckCircle className="w-6 h-6 text-green-400 mx-auto mb-2" />
-            <p className="text-2xl font-bold">{campaign.sent_count}</p>
+            <p className="text-xl sm:text-2xl font-bold">{campaign.sent_count}</p>
             <p className="text-sm text-gray-400">Sent</p>
           </div>
 
-          <div className="text-center p-4 bg-gray-800 rounded-lg">
+          <div className="text-center p-3 sm:p-4 bg-gray-800 rounded-lg">
             <XCircle className="w-6 h-6 text-red-400 mx-auto mb-2" />
-            <p className="text-2xl font-bold">{campaign.failed_count}</p>
+            <p className="text-xl sm:text-2xl font-bold">{campaign.failed_count}</p>
             <p className="text-sm text-gray-400">Failed</p>
           </div>
 
-          <div className="text-center p-4 bg-gray-800 rounded-lg">
+          <div className="text-center p-3 sm:p-4 bg-gray-800 rounded-lg">
             <Clock className="w-6 h-6 text-blue-400 mx-auto mb-2" />
-            <p className="text-2xl font-bold">
+            <p className="text-xl sm:text-2xl font-bold">
               {campaign.total_contacts - campaign.sent_count - campaign.failed_count}
             </p>
             <p className="text-sm text-gray-400">Pending</p>
@@ -218,7 +218,7 @@ const CampaignDetail = () => {
       {/* Template Preview */}
       <div className="card space-y-4">
         <h2 className="text-xl font-bold">Template</h2>
-        <div className="bg-gray-800 rounded-lg p-6 space-y-4">
+        <div className="bg-gray-800 rounded-lg p-4 sm:p-6 space-y-4">
           <div>
             <p className="text-sm text-gray-400 mb-1">Subject</p>
             <p className="font-semibold">{campaign.template_subject}</p>

@@ -61,8 +61,8 @@ const Settings = () => {
     <div className="max-w-4xl mx-auto space-y-8">
       {/* Header */}
       <div className="animate-slide-down">
-        <h1 className="text-4xl font-black gradient-text mb-2 flex items-center gap-3">
-          <Sparkles className="w-8 h-8 text-primary-500" />
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black gradient-text mb-2 flex items-center gap-2 sm:gap-3">
+          <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-primary-500" />
           Settings
         </h1>
         <p className="text-base" style={{ color: 'rgb(var(--color-text-secondary))' }}>
@@ -112,7 +112,7 @@ const Settings = () => {
             </div>
 
             {/* Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-3 sm:gap-4">
               {[
                 { icon: Shield, label: 'Secure', desc: 'OAuth 2.0' },
                 { icon: Zap, label: 'Fast', desc: 'Instant setup' },
@@ -150,24 +150,26 @@ const Settings = () => {
           <div className="space-y-6">
             {/* Connected Status */}
             <div className="p-6 rounded-2xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border-2 border-green-500/30 animate-scale-in">
-              <div className="flex items-center gap-4">
-                <div className="relative">
-                  <div className="w-14 h-14 rounded-2xl bg-green-500/20 flex items-center justify-center">
-                    <CheckCircle className="w-8 h-8 text-green-500" />
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div className="flex items-center gap-4 flex-1 min-w-0">
+                  <div className="relative flex-shrink-0">
+                    <div className="w-14 h-14 rounded-2xl bg-green-500/20 flex items-center justify-center">
+                      <CheckCircle className="w-8 h-8 text-green-500" />
+                    </div>
+                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse-ring"></div>
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse-ring"></div>
-                </div>
-                <div className="flex-1">
-                  <p className="text-lg font-bold text-green-600 dark:text-green-400 mb-1">
-                    Connected Successfully
-                  </p>
-                  <p className="text-sm font-mono" style={{ color: 'rgb(var(--color-text-secondary))' }}>
-                    {user?.email}
-                  </p>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-lg font-bold text-green-600 dark:text-green-400 mb-1">
+                      Connected Successfully
+                    </p>
+                    <p className="text-sm font-mono truncate" style={{ color: 'rgb(var(--color-text-secondary))' }}>
+                      {user?.email}
+                    </p>
+                  </div>
                 </div>
                 <button
                   onClick={handleDisconnect}
-                  className="btn-danger flex items-center gap-2"
+                  className="btn-danger flex items-center gap-2 flex-shrink-0"
                 >
                   <LogOut className="w-4 h-4" />
                   Disconnect
@@ -181,7 +183,7 @@ const Settings = () => {
                 Account Information
               </h3>
               <div className="space-y-3">
-                <div className="flex items-center justify-between p-4 rounded-xl" style={{ backgroundColor: 'rgb(var(--color-bg-tertiary))' }}>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-4 rounded-xl" style={{ backgroundColor: 'rgb(var(--color-bg-tertiary))' }}>
                   <div className="flex items-center gap-3">
                     <Mail className="w-5 h-5 text-primary-500" />
                     <span className="font-semibold" style={{ color: 'rgb(var(--color-text-secondary))' }}>
@@ -193,7 +195,7 @@ const Settings = () => {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between p-4 rounded-xl" style={{ backgroundColor: 'rgb(var(--color-bg-tertiary))' }}>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-4 rounded-xl" style={{ backgroundColor: 'rgb(var(--color-bg-tertiary))' }}>
                   <div className="flex items-center gap-3">
                     <Zap className="w-5 h-5 text-primary-500" />
                     <span className="font-semibold" style={{ color: 'rgb(var(--color-text-secondary))' }}>
@@ -225,7 +227,7 @@ const Settings = () => {
           Gmail enforces daily sending limits to prevent spam and protect your account.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {limits.map((limit, index) => {
             const Icon = limit.icon
             return (
