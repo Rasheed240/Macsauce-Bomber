@@ -1,8 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from typing import List, Dict, Any
 from datetime import datetime
+import os
+import uuid
+from pathlib import Path
 
 from app.core.database import get_db
 from app.models.campaign import Campaign, CampaignStatus
@@ -19,6 +22,10 @@ import random
 router = APIRouter()
 template_service = TemplateService()
 
+# Create uploads directory if it doesn't exist
+UPLOAD_DIR = Path("uploads/attachments")
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+
 class CreateCampaignRequest(BaseModel):
     user_email: str
     name: str
@@ -32,6 +39,7 @@ class CreateCampaignRequest(BaseModel):
     delay_min: int = 30
     delay_max: int = 90
     scheduled_at: datetime | None = None
+    attachments: List[str] | None = None
 
 class UpdateCampaignRequest(BaseModel):
     name: str | None = None
@@ -58,6 +66,7 @@ class CampaignResponse(BaseModel):
     started_at: datetime | None
     completed_at: datetime | None
     scheduled_at: datetime | None
+    attachments: List[str] | None = None
 
     class Config:
         from_attributes = True
@@ -125,7 +134,8 @@ async def create_campaign(
         daily_limit=request.daily_limit,
         delay_min=request.delay_min,
         delay_max=request.delay_max,
-        scheduled_at=request.scheduled_at
+        scheduled_at=request.scheduled_at,
+        attachments=request.attachments
     )
 
     db.add(campaign)
@@ -374,12 +384,13 @@ async def start_campaign_now(
                     campaign.template_html
                 )
 
-                # Send email
+                # Send email with attachments
                 result = gmail_service.send_email(
                     to=contact.email,
                     subject=rendered["subject"],
                     body=rendered["body"],
-                    html_body=rendered.get("html_body")
+                    html_body=rendered.get("html_body"),
+                    attachment_paths=campaign.attachments
                 )
 
                 if result["success"]:
@@ -518,3 +529,62 @@ async def stop_campaign(
     db.commit()
 
     return {"success": True, "message": "Campaign stopped"}
+
+@router.post("/upload-attachment")
+async def upload_attachment(
+    file: UploadFile = File(...)
+):
+    """Upload an attachment file for email campaigns"""
+    try:
+        # Generate unique filename
+        file_extension = os.path.splitext(file.filename)[1]
+        unique_filename = f"{uuid.uuid4()}{file_extension}"
+        file_path = UPLOAD_DIR / unique_filename
+
+        # Save file
+        with open(file_path, "wb") as buffer:
+            content = await file.read()
+            buffer.write(content)
+
+        return {
+            "success": True,
+            "filename": file.filename,
+            "file_path": str(file_path.absolute()),
+            "size": len(content)
+        }
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to upload file: {str(e)}"
+        )
+
+@router.delete("/attachment/{filename}")
+async def delete_attachment(filename: str):
+    """Delete an uploaded attachment"""
+    try:
+        # Find file in upload directory
+        file_path = None
+        for f in UPLOAD_DIR.iterdir():
+            if f.name == filename or str(f).endswith(filename):
+                file_path = f
+                break
+
+        if not file_path or not file_path.exists():
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="File not found"
+            )
+
+        # Delete file
+        os.remove(file_path)
+
+        return {"success": True, "message": "File deleted"}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to delete file: {str(e)}"
+        )

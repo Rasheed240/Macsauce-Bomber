@@ -34,6 +34,7 @@
 - **Smart Campaign Creation** - Build sophisticated email campaigns with variable substitution
 - **Template System** - Create, save, and reuse email templates with dynamic placeholders
 - **Contact Import** - CSV/Excel file upload with intelligent parsing and validation
+- **Media Attachments** - Attach files (images, PDFs, documents) to your email campaigns
 - **Scheduled Sending** - Queue campaigns for future delivery with timezone support
 - **Draft Management** - Save campaigns as drafts and resume editing anytime
 
@@ -433,16 +434,39 @@ npm run test
 
 ### Database Migrations
 
-```bash
-# Create new migration
-alembic revision --autogenerate -m "description"
+This project uses **Alembic** for database schema management. See [MIGRATIONS.md](backend/MIGRATIONS.md) for detailed documentation.
 
-# Apply migrations
+**Quick Commands:**
+
+```bash
+cd backend
+
+# Check current migration version
+alembic current
+
+# Run all pending migrations
 alembic upgrade head
 
-# Rollback
+# Create new migration (auto-generate from model changes)
+alembic revision --autogenerate -m "description"
+
+# Rollback last migration
 alembic downgrade -1
+
+# View migration history
+alembic history
 ```
+
+**Windows Quick Script:**
+
+```bash
+cd backend\scripts
+migrate.bat upgrade    # Run migrations
+migrate.bat current    # Check version
+migrate.bat create "add new field"  # Create new migration
+```
+
+**Important:** Always run migrations after pulling new code or before deploying!
 
 ---
 

@@ -109,12 +109,13 @@ def send_campaign_emails(self, campaign_id: int) -> Dict[str, Any]:
                     campaign.template_html
                 )
 
-                # Send email
+                # Send email with attachments
                 result = gmail_service.send_email(
                     to=contact.email,
                     subject=rendered['subject'],
                     body=rendered['body'],
-                    html_body=rendered.get('html_body')
+                    html_body=rendered.get('html_body'),
+                    attachment_paths=campaign.attachments
                 )
 
                 if result.get('success'):
