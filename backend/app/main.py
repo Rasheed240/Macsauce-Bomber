@@ -1,3 +1,6 @@
+from contextlib import asynccontextmanager
+import asyncio
+from sqlalchemy import text
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -11,6 +14,26 @@ from app.models import base
 # Create database tables
 base.Base.metadata.create_all(bind=engine)
 
+
+async def ping_db_forever():
+    """Hit DB with SELECT 1 every 12 hours to keep Aiven free tier awake."""
+    while True:
+        await asyncio.sleep(12 * 60 * 60)
+        try:
+            with engine.connect() as conn:
+                conn.execute(text("SELECT 1"))
+            print("DB keep-alive ping OK")
+        except Exception as e:
+            print(f"DB keep-alive ping failed: {e}")
+
+
+@asynccontextmanager
+async def lifespan(app):
+    task = asyncio.create_task(ping_db_forever())
+    yield
+    task.cancel()
+
+
 # Socket.IO setup
 sio = socketio.AsyncServer(
     async_mode='asgi',
@@ -23,7 +46,8 @@ app = FastAPI(
     description="Bulk personalized email sender with Gmail integration",
     version="1.0.0",
     docs_url="/api/docs",
-    redoc_url="/api/redoc"
+    redoc_url="/api/redoc",
+    lifespan=lifespan,
 )
 
 # CORS middleware
