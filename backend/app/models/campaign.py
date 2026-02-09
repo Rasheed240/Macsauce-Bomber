@@ -37,6 +37,9 @@ class Campaign(Base):
     failed_count = Column(Integer, default=0)
     bounced_count = Column(Integer, default=0)
 
+    # Attachments (JSON array of file paths)
+    attachments = Column(JSON, nullable=True)
+
     # Configuration
     daily_limit = Column(Integer, default=100)
     delay_min = Column(Integer, default=30)
