@@ -79,9 +79,24 @@ async def disconnect(sid):
 # Combine FastAPI and Socket.IO
 socket_app = socketio.ASGIApp(sio, app)
 
+@app.get("/health")
 @app.get("/api/health")
 async def health_check():
-    return {"status": "healthy", "version": "1.0.0"}
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("SELECT 1"))
+        return {
+            "status": "healthy",
+            "db": "connected",
+            "version": settings.VERSION
+        }
+    except Exception as e:
+        return {
+            "status": "unhealthy",
+            "db": "disconnected",
+            "error": str(e),
+            "version": settings.VERSION
+        }
 
 @app.get("/")
 async def root():
